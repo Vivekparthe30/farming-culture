@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start planning your farming culture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                maxWidth: 'none',
+                                color: '#1a1a1a',
+                                h1: {
+                                    color: '#047857',
+                                },
+                                h2: {
+                                    color: '#047857',
+                                },
+                                h3: {
+                                    color: '#047857',
+                                },
+                                strong: {
+                                    color: '#059669',
+                                },
+                                a: {
+                                    color: '#059669',
+                                    '&:hover': {
+                                        color: '#047857',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            plugins: [
+                tailwind.plugin.withOptions(() => {
+                    return function({ addComponents, theme }) {
+                        addComponents({
+                            '.prose': {
+                                '& h1': { fontSize: '2.25rem', fontWeight: '700', marginBottom: '1rem', color: theme('colors.green.600') },
+                                '& h2': { fontSize: '1.875rem', fontWeight: '600', marginBottom: '0.75rem', color: theme('colors.green.600') },
+                                '& h3': { fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.75rem', color: theme('colors.green.600') },
+                                '& p': { marginBottom: '1rem', lineHeight: '1.625' },
+                                '& ul': { listStyleType: 'disc', paddingLeft: '1.25rem', marginBottom: '1rem' },
+                                '& ol': { listStyleType: 'decimal', paddingLeft: '1.25rem', marginBottom: '1rem' },
+                                '& li': { marginBottom: '0.5rem' },
+                                '& strong': { fontWeight: '600', color: theme('colors.green.600') },
+                                '& blockquote': { borderLeftWidth: '4px', borderColor: theme('colors.green.200'), paddingLeft: '1rem', fontStyle: 'italic', marginBottom: '1rem' },
+                                '& code': { backgroundColor: theme('colors.gray.100'), padding: '0.25rem', borderRadius: '0.25rem', fontSize: '0.875rem' },
+                                '& pre': { backgroundColor: theme('colors.gray.100'), padding: '1rem', borderRadius: '0.5rem', marginBottom: '1rem', overflow: 'auto' },
+                            }
+                        })
+                    }
+                })
+            ],
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            margin-top: 0.25rem;
+        }
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        .form-section {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex justify-between items-center py-6">
+            <a href="predict.html" class="text-2xl font-bold text-green-600">Farming Culture</a>
+            <button class="text-gray-600 hover:text-green-600 focus:outline-none md:hidden" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        
+        <div class="container mx-auto px-4 py-8 max-w-3xl">
+            <h2 class="text-3xl font-bold text-green-600 mb-6">
+                Start planning your farming culture
+            </h2>
+            <form method="post" class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+                <div class="form-section">
+                    <label for="previous_crop" class="block text-gray-700 text-sm font-bold mb-2">Which crop you want to grow:</label>
+                    <input type="text" id="previous_crop" name="previous_crop" required class="form-input" placeholder="e.g., Wheat, Rice, etc." />
+                </div>
+
+                <div class="form-section">
+                    <label for="landSizeInput" class="block text-gray-700 text-sm font-bold mb-2">Land Size (acres):</label>
+                    <input type="number" id="landSizeInput" name="land_size" class="form-input" placeholder="Enter land size in acres" required min="0" step="0.1">
+                </div>
+
+                <div class="form-section">
+                    <label for="land_location" class="block text-gray-700 text-sm font-bold mb-2">Land Location:</label>
+                    <select id="land_location" name="land_location" class="form-select" required>
+                        <option value="" disabled selected>Select land location</option>
+                        <option value="coastal">Coastal</option>
+                        <option value="forest">Forest</option>
+                        <option value="hills">Hills</option>
+                        <option value="plains">Plains</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label for="water_type" class="block text-gray-700 text-sm font-bold mb-2">Water Type:</label>
+                    <select id="water_type" name="water_type" class="form-select" required>
+                        <option value="" disabled selected>Select water type</option>
+                        <option value="fresh">Fresh Water</option>
+                        <option value="salty">Salty Water</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label for="Select Soil Type" class="block text-gray-700 text-sm font-bold mb-2">Select Soil Type:</label>
+                    <select id="Select Soil Type" name="Select Soil Type" class="form-select" required>
+                        <option value="" disabled selected>Select Soil Type</option>
+                        <option value="Alluvial Soil">Alluvial Soil</option>
+                        <option value="Black Soil">Black Soil</option>
+                        <option value="Red Soil">Red Soil</option>
+                        <option value="Laterite Soil">Laterite Soil</option>
+                        <option value="Arid and Desert Soils">Arid and Desert Soils</option>
+                        <option value="Forest and Mountain Soils">Forest and Mountain Soils</option>
+                        <option value="Saline and Alkaline Soils">Saline and Alkaline Soils</option>
+                        <option value="Peaty and Marshy Soil">Peaty and Marshy Soil</option>
+                    </select>
+                </div>
+               
+                <button type="submit" class="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out w-full">
+                    Submit
+                </button>
+            </form>
+
+            {% if response %}
+            <div class="mt-8 p-6 bg-white shadow-lg rounded-lg">
+                <h3 class="text-2xl font-bold text-green-600 mb-4">Analysis & Recommendations</h3>
+                <div class="prose prose-green max-w-none">
+                    {{ response | safe }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <footer class="bg-green-50 text-center py-4 mt-8 rounded-lg">
+            <p class="text-gray-600">&copy; 2024 Farming Culture. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="../static/predict.js"></script>
+    <script>
+        function toggleMenu() {
+            var navigation = document.querySelector('.nav-links');
+            navigation.classList.toggle('mobile-menu');
+        }
+
+        function updateFarmImage() {
+            var landSize = document.getElementById('landSizeInput').value;
+            var farmImage = document.getElementById('farmImage');
+            if (landSize > 0) {
+                farmImage.classList.remove('hidden');
+                // Here you can add logic to change the image based on land size
+            } else {
+                farmImage.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
